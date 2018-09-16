@@ -32,19 +32,31 @@ AUTH_ENDPOINT=/authorization
 
 ## Pre-Requisites
 
-* docker
+### Development
+
+* Docker
 * docker-compose
+* minikube
+
+### Production
+
+* Docker
+* Kubernetes
 
 ## How to
 
 ### Create a new laravel microservice
 
-Run the commands above on services folder (`project/path/services`):
+Run the commands above on services folder (`project/path/services`), it can take a while:
 
 ```sh
 curl -L https://github.com/laravel/laravel/archive/v5.6.12.tar.gz | tar xz
 mv laravel-v5.6.12 <microservice-name>
+cd <microservice-name>
+docker run --rm -v $(pwd):/app composer install
 ```
 
-If you want any other version of laravel see the official releases page: [https://github.com/laravel/laravel/releases](https://github.com/laravel/laravel/releases)
+> If you are running on windows, change `$(pwd)` to `"%cd%"`: `docker run --rm -v "%cd%":/app composer install`
+
+> If you want any other version of laravel see the official releases page: [https://github.com/laravel/laravel/releases](https://github.com/laravel/laravel/releases)
 
