@@ -24,3 +24,7 @@ AUTH_ENDPOINT=/authorization
     * /users (WRONG)
     * /user (CORRECT)
     * /user/:id (CORRECT)
+
+## Modules
+
+* [Users]()
