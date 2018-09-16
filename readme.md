@@ -56,7 +56,14 @@ cd <microservice-name>
 docker run --rm -v $(pwd):/app composer install
 ```
 
+Then create all `microservice configuration files` based on [users microservice](./services/users) files:
+* `php.ini`
+* `app.dockerfile`
+* `vhost.conf`
+* `web.dockerfile`
+* `docker-compose.yml`
+
+
 > If you are running on windows, change `$(pwd)` to `"%cd%"`: `docker run --rm -v "%cd%":/app composer install`
 
 > If you want any other version of laravel see the official releases page: [https://github.com/laravel/laravel/releases](https://github.com/laravel/laravel/releases)
-
