@@ -29,3 +29,22 @@ AUTH_ENDPOINT=/authorization
 
 * [Api Management](./docs/api-management/api-management.md)
 * [Users](./docs/users/users.md)
+
+## Pre-Requisites
+
+* docker
+* docker-compose
+
+## How to
+
+### Create a new laravel microservice
+
+Run the commands above on services folder (`project/path/services`):
+
+```sh
+curl -L https://github.com/laravel/laravel/archive/v5.6.12.tar.gz | tar xz
+mv laravel-v5.6.12 <microservice-name>
+```
+
+If you want any other version of laravel see the official releases page: [https://github.com/laravel/laravel/releases](https://github.com/laravel/laravel/releases)
+
