@@ -27,4 +27,4 @@ AUTH_ENDPOINT=/authorization
 
 ## Modules
 
-* [Users]()
+* [Users](./docs/users/users.md)
