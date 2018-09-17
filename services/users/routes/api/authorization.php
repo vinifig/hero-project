@@ -11,12 +11,5 @@ use Illuminate\Http\Request;
 |
 */
 
-// // Registration Endpoint
-// Route::any('/', function (Request $request) {
-//     return response()->json([
-//         'Resource not found.'
-//     ], 404);
-// });
-
 // Authorization Endpoint
 Route::get('/{resource}/{action}', 'AuthorizationController@getResourceAuthorization');
