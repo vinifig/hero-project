@@ -12,3 +12,10 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+// Registration Endpoint
+Route::any('/', function (Request $request) {
+    return response()->json([
+        'Resource not found.'
+    ], 404);
+});

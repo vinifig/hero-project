@@ -15,6 +15,13 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'App\Http\Controllers';
+    
+    /**
+     * This namespace is applied to AuthRoutes
+     * @var string
+     */
+    private $authNamespace = 'App\Http\Controllers\Auth';
+
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -24,7 +31,6 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-
         parent::boot();
     }
 
@@ -65,9 +71,16 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
+        // base routes
         Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api.php'));
+
+        // Auth routes
+        Route::prefix('api/auth')
+            ->middleware('api')
+            ->namespace($this->authNamespace)
+            ->group(base_path('routes/api/auth.php'));
     }
 }
