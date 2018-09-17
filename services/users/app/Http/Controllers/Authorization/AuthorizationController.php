@@ -10,6 +10,18 @@ use Illuminate\Http\Request;
 class AuthorizationController extends Controller
 {
 
+    /*
+    |--------------------------------------------------------------------------
+    | Authorization Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles Authorization operations for the application and 
+    | external system. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
+
     /**
      * Create a new controller instance.
      *
