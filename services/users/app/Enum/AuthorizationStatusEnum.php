@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Auth\Authorization\Enum;
+namespace App\Enum;
 
 use BenSampo\Enum\Enum;
 /**
@@ -8,7 +8,7 @@ use BenSampo\Enum\Enum;
  */
 final class AuthorizationStatusEnum extends Enum
 {
-    const Accept = 200;
+    const OK = 200;
     const InvalidToken = 400;
     const Unauthorized = 401;
     const ResourceNotFound = 404;

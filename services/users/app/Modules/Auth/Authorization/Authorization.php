@@ -13,7 +13,7 @@ use \Symfony\Component\Routing\Exception\InvalidParameterException;
  */
 class Authorization extends HttpJsonResource
 {
-    public $route = null;
+    public $resource = null;
     public $action = null;
     public $token = null;
     
@@ -23,9 +23,9 @@ class Authorization extends HttpJsonResource
      */
     public function toArray($request) {
         return [
-            'route' => $this->$route,
-            'action' => $this->$action,
-            'token' => $this->$token,
+            'resource' => $this->resource,
+            'action' => $this->action,
+            'token' => $this->token,
             'message' => $this->getStatusMessage(),
             'status' => $this->getStatusHttpCode()
         ];

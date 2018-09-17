@@ -3,7 +3,7 @@
 namespace App\Modules;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use  App\Modules\Auth\Authorization\Enum\AuthorizationStatusEnum;
+use App\Enum\AuthorizationStatusEnum;
 use \Symfony\Component\Routing\Exception\InvalidParameterException;
 /**
  * Authorization data
@@ -14,7 +14,7 @@ use \Symfony\Component\Routing\Exception\InvalidParameterException;
  */
 abstract class HttpJsonResource extends JsonResource
 {
-    private $status = AuthorizationStatusEnum::Unsetted;
+    private $status = null;
 
     /**
      * Set Authorization response status
@@ -30,7 +30,54 @@ abstract class HttpJsonResource extends JsonResource
         if ($status === AuthorizationStatusEnum::Unsetted) {
             throw new InvalidParameterException('$status cannot be setted as Unsetted');
         }
-        $this->$status = $status;
+        $this->status = $status;
+    }
+
+    /**
+     * Set Authorization response status as NotFound
+     * 
+     * @return void
+     */
+    public function resourceNotFound ($status) {
+        $this->status = AuthorizationStatusEnum::ResourceNotFound;
+    }
+
+    /**
+     * Set Authorization response status as OK
+     * 
+     * @return void
+     */
+    public function resourceOK ($status) {
+        $this->status = AuthorizationStatusEnum::OK;
+    }
+
+    /**
+     * Set Authorization response status as Unauthorized
+     * 
+     * @return void
+     */
+    public function resourceUnauthorized ($status) {
+        $this->status = AuthorizationStatusEnum::Unauthorized;
+    }
+
+    /**
+     * Set Authorization response status as InvalidToken
+     * 
+     * @return void
+     */
+    public function resourceInvalidToken ($status) {
+        $this->status = AuthorizationStatusEnum::InvalidToken;
+    }
+
+
+    /**
+     * Return Authorization response status
+     */
+    public function getStatus () {
+        if ($this->status == null) {
+            return AuthorizationStatusEnum::Unsetted;
+        }
+        return $this->status;
     }
 
     /**
@@ -40,7 +87,9 @@ abstract class HttpJsonResource extends JsonResource
      * 
      */
     public function getStatusMessage () {
-        return AuthorizationStatusEnum::getKey($status);
+        return AuthorizationStatusEnum::getKey(
+            $this->getStatus()
+        );
     }
 
     /**
@@ -49,7 +98,13 @@ abstract class HttpJsonResource extends JsonResource
      * @return int
      */
     public function getStatusHttpCode () {
-        return $status;
+        return $this->getStatus();
+    }
+
+    public function httpResponse () {
+        return $this
+            ->response()
+            ->setStatusCode($result->getStatusHttpCode());
     }
 
 }

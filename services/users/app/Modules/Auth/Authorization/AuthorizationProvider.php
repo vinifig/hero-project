@@ -3,8 +3,8 @@
 namespace App\Modules\Auth\Authorization;
 
 use App\User;
+use App\Enum\AuthorizationStatusEnum;
 use App\Modules\Auth\Authorization\Authorization;
-use App\Modules\Auth\Authorization\Enum\AuthorizationStatusEnum;
 use Illuminate\Support\Facades\Validator;
 
 class AuthorizationServiceProvider
@@ -34,13 +34,15 @@ class AuthorizationServiceProvider
      */
     public static function authorize(array $data) {
         self::authorizationValidator($data)->validate();
-        
-        $authorization = new Authorization();
-        $authorization->route = $data['route'];
+
+        // Here goes the authorization logic.
+
+        $authorization = new Authorization([]);
+        $authorization->resource = $data['resource'];
         $authorization->action = $data['action'];
         $authorization->token = $data['token'];
 
-        $authorization->setStatus(AuthorizationStatusEnum::Accept);
+        $authorization->setStatus(AuthorizationStatusEnum::ResourceNotFound);
 
         return $authorization;
     }

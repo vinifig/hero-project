@@ -37,12 +37,9 @@ class AuthorizationController extends Controller
             'action' => $action
         ];
         
-        // Here goes the authorization logic.
-        $result = AuthorizationProvider::authorize($validationData);
+        $authorization = AuthorizationProvider::authorize($validationData);
         
-        return $result
-            ->response()
-            ->setStatusCode($result->getStatusHttpCode());
+        return $authorization->httpResponse();  
 
     }
     
