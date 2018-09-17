@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Authorization;
 
 use App\Modules\Auth\Authorization\AuthorizationServiceProvider as AuthorizationProvider;
 use App\Http\Controllers\Controller;
