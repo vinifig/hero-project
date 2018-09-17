@@ -42,7 +42,7 @@ class AuthorizationServiceProvider
         $authorization->action = $data['action'];
         $authorization->token = $data['token'];
 
-        $authorization->setStatus(AuthorizationStatusEnum::ResourceNotFound);
+        $authorization->resourceOK();
 
         return $authorization;
     }

@@ -38,8 +38,8 @@ abstract class HttpJsonResource extends JsonResource
      * 
      * @return void
      */
-    public function resourceNotFound ($status) {
-        $this->status = AuthorizationStatusEnum::ResourceNotFound;
+    public function resourceNotFound () {
+        $this->setStatus(AuthorizationStatusEnum::ResourceNotFound);
     }
 
     /**
@@ -47,8 +47,8 @@ abstract class HttpJsonResource extends JsonResource
      * 
      * @return void
      */
-    public function resourceOK ($status) {
-        $this->status = AuthorizationStatusEnum::OK;
+    public function resourceOK () {
+        $this->setStatus(AuthorizationStatusEnum::OK);
     }
 
     /**
@@ -56,8 +56,8 @@ abstract class HttpJsonResource extends JsonResource
      * 
      * @return void
      */
-    public function resourceUnauthorized ($status) {
-        $this->status = AuthorizationStatusEnum::Unauthorized;
+    public function resourceUnauthorized () {
+        $this->setStatus(AuthorizationStatusEnum::Unauthorized);
     }
 
     /**
@@ -65,8 +65,8 @@ abstract class HttpJsonResource extends JsonResource
      * 
      * @return void
      */
-    public function resourceInvalidToken ($status) {
-        $this->status = AuthorizationStatusEnum::InvalidToken;
+    public function resourceInvalidToken () {
+        $this->setStatus(AuthorizationStatusEnum::InvalidToken);
     }
 
 
@@ -104,7 +104,7 @@ abstract class HttpJsonResource extends JsonResource
     public function httpResponse () {
         return $this
             ->response()
-            ->setStatusCode($result->getStatusHttpCode());
+            ->setStatusCode($this->getStatusHttpCode());
     }
 
 }
