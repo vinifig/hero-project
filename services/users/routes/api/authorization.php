@@ -19,4 +19,4 @@ use Illuminate\Http\Request;
 // });
 
 // Authorization Endpoint
-Route::get('/authorization/{resource}/{action}', 'AuthorizationController@getResourceAuthorization');
+Route::get('/{resource}/{action}', 'AuthorizationController@getResourceAuthorization');
