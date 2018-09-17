@@ -4,12 +4,13 @@ namespace App\Http\Controllers\User;
 
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
+use App\Http\Controllers\AuthenticatableController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class UserController extends Controller
+class UserController extends AuthenticatableController
 {
     /*
     |--------------------------------------------------------------------------
@@ -56,6 +57,16 @@ class UserController extends Controller
         ]);
     }
 
+    protected function onAuthenticated ($user) {
+        $token = $user->token();
+        return $user;
+    }
+
+    protected function authenticate($user) {
+        $this->guard()->login($user);
+        return $this->onAuthenticated($user);
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -67,13 +78,20 @@ class UserController extends Controller
     {
         $data = $this->requestData($request);
         $this->validator($data)->validate();
-
         
-
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        event(new Registered($user));
+        
+        $authenticated = $this->authenticate($user);
+
+        return response()
+            ->json([
+                'data' => $authenticated->toArray()
+            ], 201);
     }
 }
