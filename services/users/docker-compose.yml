@@ -1,7 +1,7 @@
 version: '2'
 services:
   # Laravel Application
-  app:
+  users_app:
     build:
       context: ./
       dockerfile: users-app.dockerfile
@@ -10,24 +10,24 @@ services:
       - ./:/var/www
     environment:
       - "DB_PORT=3306"
-      - "DB_HOST=database"
+      - "DB_HOST=users_database"
   
   # Nginx Server - Laravel Server
-  web:
+  users_web:
     build:
       context: ./
       dockerfile: users-web.dockerfile
     working_dir: /var/www
     volumes_from:
-      - app
+      - users_app
     ports:
       - 8080:80
   
   # MySQL Database
-  database:
+  users_database:
     image: mysql:latest
     volumes:
-      - dbdata:/var/lib/mysql
+      - users_dbdata:/var/lib/mysql
     environment:
       - "MYSQL_ROOT_PASSWORD=devpass"
       - "MYSQL_DATABASE=users"
@@ -36,4 +36,4 @@ services:
       - "33061:3306"
 
 volumes:
-  dbdata:
+  users_dbdata:
