@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Authorization;
+namespace App\Http\Controllers\User;
 
 use App\User;
 use App\Http\Controllers\Controller;
@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
+class UserController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | Register Controller
+    | User Controller
     |--------------------------------------------------------------------------
     |
     | This controller handles the registration of new users as well as their
