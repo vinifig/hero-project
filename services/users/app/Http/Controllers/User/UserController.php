@@ -6,7 +6,6 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use App\Http\Controllers\AuthenticatableController;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -56,7 +55,7 @@ class UserController extends AuthenticatableController
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
-    
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -72,7 +71,7 @@ class UserController extends AuthenticatableController
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => User::encrypt($data['password']),
         ]);
 
         event(new Registered($user));

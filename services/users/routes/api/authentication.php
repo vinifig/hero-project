@@ -11,8 +11,5 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return response()->json([
-        'Hello' => ', World!'
-    ], 200);
-});
+// Authentication Endpoint
+Route::post('/', 'AuthenticationController@login');
