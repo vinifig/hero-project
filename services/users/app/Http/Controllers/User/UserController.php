@@ -56,17 +56,7 @@ class UserController extends AuthenticatableController
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
-
-    protected function onAuthenticated ($user) {
-        $token = $user->token();
-        return $user;
-    }
-
-    protected function authenticate($user) {
-        $this->guard()->login($user);
-        return $this->onAuthenticated($user);
-    }
-
+    
     /**
      * Create a new user instance after a valid registration.
      *
