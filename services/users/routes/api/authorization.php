@@ -4,10 +4,10 @@ use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes - Auth
+| API Routes - Authorization
 |--------------------------------------------------------------------------
 |
-| Here is where you can register any auth related route. 
+| Here is where you can register any authorization related route. 
 |
 */
 
