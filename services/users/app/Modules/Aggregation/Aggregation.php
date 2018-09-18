@@ -23,7 +23,9 @@ abstract class Aggregation
         
         // it should be refactored. but i really don't know how
         
-        $baseLink = '';
+        $baseLink = env('APP_URL', '/');
+        $baseLink .= 'api/';
+
         $resourceLink = $baseLink;
 
         switch ($resource) {
