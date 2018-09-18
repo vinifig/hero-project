@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Modules\Aggregation\Aggregator;
+use App\Modules\Aggregation\IAggregateable;
+
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -14,5 +17,15 @@ class Controller extends BaseController
 
     protected function requestData(Request $request) {
         return $request->all();
+    }
+
+    protected function aggregate (IAggregateable $aggregateableInstance) {
+        return $this
+            ->aggregator()
+            ->aggregate($aggregateableInstance);
+    }
+
+    protected function aggregator () {
+        return new Aggregator();
     }
 }

@@ -57,6 +57,26 @@ class UserController extends AuthenticatableController
     }
 
     /**
+     * Get User By ID
+     * 
+     * @param Request $request
+     * @param int $id - User Id
+     * @return \App\User
+     */
+    protected function getUser(Request $request, $id) {
+        $columns = ['id', 'name', 'email', 'created_at', 'updated_at'];
+        
+        $user = User::findOrFail($id, $columns);
+        
+        $user->_links = $this
+            ->aggregator()
+            ->aggregate($user);
+
+        return response()
+            ->json($user->toArray(), 201);
+    }
+
+    /**
      * Create a new user instance after a valid registration.
      *
      * @param Request $request

@@ -2,11 +2,15 @@
 
 namespace App;
 
+use App\Modules\Aggregation\IAggregateable;
+
+use App\Modules\User\Aggregation\UserHeroAggregation;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements IAggregateable
 {
     use Notifiable;
 
@@ -36,5 +40,28 @@ class User extends Authenticatable
     public function token() {
         $this->token = str_random(60);
         $this->save();
+    }
+
+
+    // IAggregation Interface Implementations
+
+    /**
+     * Return a list of aggregations of a instance
+     * @return array
+     */
+    public function aggregationList() {
+        return [
+            new UserHeroAggregation()
+        ];
+    }
+
+    /**
+     * Return the aggregation identifier
+     * 
+     * For users the aggregation identifier is Id
+     * @return int
+     */
+    public function aggregationId () {
+        return $this->id;
     }
 }

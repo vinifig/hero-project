@@ -14,3 +14,6 @@ use Illuminate\Http\Request;
 
 // Registration
 Route::Post('/', 'UserController@create');
+
+// Get User
+Route::get('/{id}', 'UserController@getUser');
