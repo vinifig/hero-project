@@ -16,26 +16,33 @@ abstract class Aggregation
     /**
      * responsible to obtain the respective resource link
      * resource link generator
+     * 
      * @param string $resource - Name of resource
      * @param any $id - unique identifier. Can be null
      */
     protected function resourceLink ($resource, $id = null) {
         
         // it should be refactored. but i really don't know how
-        
+        // probably this method should be abstract and his implementation
+        // should go into children definition
+
         $baseLink = env('APP_URL', '/');
         $baseLink .= 'api/';
 
         $resourceLink = $baseLink;
+        
+        $template = '';
 
         switch ($resource) {
             case 'user/hero':
             default:
-                $resourceLink .= $resource;
+                $template = 'user/{id}/hero';
                 break;
         }
+        
+        
         if ($id !== null) {
-            $resourceLink .= '/' . $id;
+            $resourceLink .= str_replace('{id}', $id, $template);
         }
 
         return $resourceLink;
