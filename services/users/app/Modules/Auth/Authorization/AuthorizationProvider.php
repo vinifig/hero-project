@@ -7,7 +7,7 @@ use App\Enum\AuthorizationStatusEnum;
 use App\Modules\Auth\Authorization\Authorization;
 use Illuminate\Support\Facades\Validator;
 
-class AuthorizationServiceProvider
+class AuthorizationProvider
 {
     /**
      * Get a validator for an incoming authorization request.
@@ -42,7 +42,7 @@ class AuthorizationServiceProvider
         $authorization->action = $data['action'];
         $authorization->token = $data['token'];
 
-        $authorization->resourceOK();
+        $authorization->authorize();
 
         return $authorization;
     }

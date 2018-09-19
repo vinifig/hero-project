@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Authorization;
 
-use App\Modules\Auth\Authorization\AuthorizationServiceProvider as AuthorizationProvider;
+use App\Modules\Auth\Authorization\AuthorizationProvider;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -41,7 +41,8 @@ class AuthorizationController extends Controller
      * @param string $action - Action of resource who needs authorization
      */
     public function getResourceAuthorization(Request $request, string $resource, string $action) {
-        $token = 'token';
+
+        $token = $request->header("Authorization");
         
         $validationData = [
             'token' => $token,

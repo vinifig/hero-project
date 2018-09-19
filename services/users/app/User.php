@@ -42,6 +42,17 @@ class User extends Authenticatable implements IAggregateable
         $this->save();
     }
 
+    // Static validations
+
+    /**
+     * Validate if a token exists
+     * @return boolean
+     */
+    public static function validToken ($token) {
+        $userBearer = User::where('token', $token)
+            ->first();
+        return $userBearer !== null;
+    }
 
     // IAggregation Interface Implementations
 

@@ -2,6 +2,8 @@
 
 namespace App\Modules\Auth\Authorization;
 
+use App\Resources;
+use App\User;
 use \App\Modules\HttpJsonResource;
 use \Symfony\Component\Routing\Exception\InvalidParameterException;
 
@@ -18,6 +20,29 @@ class Authorization extends HttpJsonResource
     public $token = null;
     
     /**
+     * verify if the resource can be authorized
+     * @return Authorization
+     */
+    public function authorize () {
+        if (!Resources::secure($this->resource, $this->action)) {
+            //$this->resourceOK();
+            //return $this;
+        };
+        
+        if ($this->token == null) {
+            $this->resourceUnauthorized();
+            return $this;
+        }
+
+        if (!User::validToken($this->token)) {
+            $this->resourceForbidden();
+            return $this;
+        }
+        $this->resourceOK();
+        return $this;
+    }
+
+    /**
      * Returns Authorization Response
      * @return array
      */
@@ -25,7 +50,6 @@ class Authorization extends HttpJsonResource
         return [
             'resource' => $this->resource,
             'action' => $this->action,
-            'token' => $this->token,
             'message' => $this->getStatusMessage(),
             'status' => $this->getStatusHttpCode()
         ];

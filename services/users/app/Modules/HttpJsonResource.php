@@ -65,8 +65,8 @@ abstract class HttpJsonResource extends JsonResource
      * 
      * @return void
      */
-    public function resourceInvalidToken () {
-        $this->setStatus(AuthorizationStatusEnum::InvalidToken);
+    public function resourceForbidden () {
+        $this->setStatus(AuthorizationStatusEnum::Forbidden);
     }
 
 
