@@ -4,4 +4,4 @@ RUN npm install
 
 RUN npm install -g nodemon
 
-CMD nodemon .
+CMD nodemon -L --inspect index.js

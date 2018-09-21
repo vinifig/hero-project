@@ -12,6 +12,7 @@ services:
       - 8080:80
     environment:
       - PORT=80
+      - MONGO_SERVER=mongodb://api_database:27017/ApiDB
   
   # Mongo Database
   api_database:
