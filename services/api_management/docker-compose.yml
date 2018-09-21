@@ -1,0 +1,29 @@
+version: '2'
+services:
+  # Node Server 
+  api_web:
+    build:
+      context: ./
+      dockerfile: api-web.dockerfile
+    working_dir: /var/app
+    volumes:
+      - ./:/var/app
+    ports:
+      - 8080:80
+    environment:
+      - PORT=80
+  
+  # Mongo Database
+  api_database:
+    image: mongo:latest
+    volumes:
+      - api_dbdata:/data/db
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    ports:
+      - "30000:27017"
+    command: mongod --smallfiles --logpath=/dev/null
+
+volumes:
+  api_dbdata:
