@@ -23,4 +23,7 @@ RUN pecl install redis -o -f redis
 RUN docker-php-ext-enable mongodb redis
 RUN rm -rf /temp/pear
 
+# Installing Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 COPY ./php.ini /usr/local/etc/php/php.ini

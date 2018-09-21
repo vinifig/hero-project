@@ -10,7 +10,8 @@ services:
       - ./:/var/www
     environment:
       - "DB_PORT=27017"
-      - "MONGO_SERVER=mongodb://api_database:27017/heroes_database"
+      - "DB_HOST=heroes_database"
+      - "DB_DATABASE=heroes_database"
   
   # Nginx Server - Laravel Server
   heroes_web:
