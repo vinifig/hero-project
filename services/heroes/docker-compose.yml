@@ -1,0 +1,49 @@
+version: '2'
+services:
+  # Laravel Application
+  heroes_app:
+    build:
+      context: ./
+      dockerfile: heroes-app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    environment:
+      - "DB_PORT=27017"
+      - "MONGO_SERVER=mongodb://api_database:27017/heroes_database"
+  
+  # Nginx Server - Laravel Server
+  heroes_web:
+    build:
+      context: ./
+      dockerfile: heroes-web.dockerfile
+    working_dir: /var/www
+    volumes_from:
+      - heroes_app
+    ports:
+      - 8081:80
+  
+  # Mongo Database
+  heroes_database:
+    image: mongo:latest
+    volumes:
+      - heroes_dbdata:/data/db
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    ports:
+      - "30001:27017"
+    command: mongod --smallfiles --logpath=/dev/null
+
+  # Redis Database
+  heroes_cache:
+    image: redis:alpine
+    ports:
+      - "31000:6379"
+    volumes:
+      - heroes_cachedata:/data
+    command: redis-server --appendonly yes
+    
+volumes:
+  heroes_dbdata:
+  heroes_cachedata:
