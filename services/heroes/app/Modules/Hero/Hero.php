@@ -2,7 +2,8 @@
 
 namespace App\Modules\Hero;
 
-use Jenssegers\Mongodb\Eloquent\Model;
+use App\Modules\CacheableModel as Model;
+use Illuminate\Support\Facades\Redis;
 
 class Hero extends Model
 {
