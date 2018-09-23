@@ -8,14 +8,39 @@ use App\Modules\Hero\Hero;
 
 class HeroController extends Controller
 {
-    public function getAll (Request $request, $id) {
-        return Hero::findOrFail($id);
+
+    public function getAll (Request $request) {
+        $heroes = Hero::all();
+        if ($heroes->count() == 0) {
+            return $this->resourceNotFound();
+        }
+        return $this->ok($heroes);
+    }
+
+    public function get (Request $request, $id) {
+        $hero = Hero::findOrFail($id);
+        return $this->ok($hero);
     }
 
     public function insert (Request $request) {
         $toInsert = $request->all();
-        $user = Hero::create($toInsert);
-        return response()
-            ->json($user, 201);
+        $hero = Hero::create($toInsert);
+        return $this->created($hero, 201);
+    }
+
+    public function update (Request $request, $id) {
+        $dataToUpdate = $request->all();
+        
+        $hero = Hero::findOrFail($id);
+        
+        $hero->update($dataToUpdate);
+
+        return $this->ok($hero);
+    }
+
+    public function delete (Request $request, $id) {
+        Hero::findOrFail($id)
+            ->delete();
+        return $this->noContent();
     }
 }

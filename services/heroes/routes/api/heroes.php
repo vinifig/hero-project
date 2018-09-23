@@ -13,5 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/{id}', 'HeroController@getAll');
+Route::get('/', 'HeroController@getAll');
+Route::get('/{id}', 'HeroController@get');
+
+
 Route::post('/', 'HeroController@insert');
+
+Route::patch('/{id}', 'HeroController@update');
+
+Route::delete('/{id}', 'HeroController@delete');
