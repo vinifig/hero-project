@@ -84,6 +84,8 @@ docker-compose exec users_app composer install
 docker-compose exec users_app php artisan migrate
 ```
 
+Remember to copy all `.env.example` files into `.env` for each service folder on project.
+
 To see the hero-app open your browser on 0.0.0.0:8082 (localhost:8082).
 
 
