@@ -13,6 +13,20 @@
     border-bottom: 1px solid white;
 }
 
-.hero-name, .hero-type {
+.hero-header > .hero-details {
+    color: blue;
+}
+
+.hero-info > p {
+    line-height: 1.1rem;
+}
+
+.hero-name, .hero-role {
     margin: 2px 0;
+}
+
+.hero-role {
+    font-size: 1.0rem;
+    color: rgb(172, 162, 156);
+    font-style: italic;
 }

@@ -9,6 +9,7 @@ import { HeroModel } from '../model/hero-model';
 export class HeroComponent implements OnInit {
 
   @Input() hero: HeroModel;
+  @Input() showDetails: boolean = true;
 
   constructor() { 
   }
