@@ -28,22 +28,28 @@ export class HeroService {
       .catch((content)=>console.log(content));
   }
 
-  public updateHero (id: string, hero: HeroModel) {
+  public updateHero (id: string, hero: HeroModel): Promise<HeroModel> {
     return this.http
       .patch(`${environment.heroesURI}/${id}`, hero)
-      .toPromise();
+      .toPromise()
+      .then((response) => response.json())
+      .catch((content)=>console.log(content));
   }
 
   public createHero (hero: HeroModel) {
     return this.http
-      .patch(`${environment.heroesURI}`, hero)
-      .toPromise();
+      .post(`${environment.heroesURI}`, hero)
+      .toPromise()
+      .then((response) => response.json())
+      .catch((content)=>console.log(content));
   }
 
   public deleteHero (hero: HeroModel) {
     return this.http
       .delete(`${environment.heroesURI}`)
-      .toPromise();
+      .toPromise()
+      .then((response) => response.json())
+      .catch((content)=>console.log(content));
   }
 
 }

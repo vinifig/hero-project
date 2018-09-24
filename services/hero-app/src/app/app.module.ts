@@ -8,6 +8,8 @@ import { HeroDetailsComponent } from './hero-details/hero-details.component';
 import { HeroComponent } from './hero/hero.component';
 import { HttpModule, Http } from '@angular/http';
 import { HeroFormComponent } from './hero-form/hero-form.component';
+import { FormsModule } from '@angular/forms';
+import { CreateHeroComponent } from './create-hero/create-hero.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { HeroFormComponent } from './hero-form/hero-form.component';
     HeroListComponent,
     HeroDetailsComponent,
     HeroComponent,
-    HeroFormComponent
+    HeroFormComponent,
+    CreateHeroComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
