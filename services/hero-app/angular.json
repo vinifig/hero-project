@@ -54,7 +54,8 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "hero-app:build:production"
+              "browserTarget": "hero-app:build:production",
+              "port": 80
             }
           }
         },

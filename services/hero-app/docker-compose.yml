@@ -1,0 +1,10 @@
+version: '2'
+services:
+  # Laravel Application
+  hero_app:
+    build:
+      context: ./
+      dockerfile: hero-app.dockerfile
+    working_dir: /usr/src/app
+    ports:
+      - 8082:80
