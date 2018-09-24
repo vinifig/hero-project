@@ -1,0 +1,18 @@
+.hero {
+    padding: 2px 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    min-width: 300px;
+    max-width: 600px;
+    border-radius: 10px;
+    border: 3px solid #ff7f50;
+    text-align: left;
+}
+
+.hero-header {
+    padding: 5px 0;
+    border-bottom: 1px solid white;
+}
+
+.hero-name, .hero-type {
+    margin: 2px 0;
+}

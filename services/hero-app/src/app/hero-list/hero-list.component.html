@@ -1,0 +1,9 @@
+<div class="hero-list">
+  <app-hero
+    class="hero-list-item"
+    *ngFor="let hero of heroList"
+    (click)="onSelect(hero)"
+    [hero]="hero">
+    <span class="badge">{{hero._id}}</span> {{hero.name}}
+  </app-hero>
+</div>

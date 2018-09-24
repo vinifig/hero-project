@@ -1,0 +1,14 @@
+<div class="hero">
+  <div class="hero-header">
+    <h1 class="hero-name">{{hero.name}}</h1>
+    <h2 class="hero-type">{{hero.type}}</h2>
+    <a [routerLink]="['/hero', hero._id]">Detalhes</a>
+  </div>
+  <div class="hero-info">
+    <p class="hero-info-life">life: {{hero.life}}</p>
+    <p class="hero-info-defense">defense: {{hero.defense}}</p>
+    <p class="hero-info-attack">attack: {{hero.attack}}</p>
+    <p class="hero-info-attack-speed">attackSpeed: {{hero.attackSpeed}}</p>
+    <p class="hero-info-move-speed">moveSpeed: {{hero.moveSpeed}}</p>
+  </div>
+</div>
