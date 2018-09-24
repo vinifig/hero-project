@@ -1,5 +1,6 @@
 <div class="hero-details">
   <div *ngIf="hero !== null" class="hero-details-container">
     <app-hero [showDetails]="false" [hero]="hero"></app-hero>
+    <app-hero-form [hero]="hero" [title]="'Edit Hero'"></app-hero-form>
   </div>
 </div>

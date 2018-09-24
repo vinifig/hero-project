@@ -7,13 +7,15 @@ import { HeroListComponent } from './hero-list/hero-list.component';
 import { HeroDetailsComponent } from './hero-details/hero-details.component';
 import { HeroComponent } from './hero/hero.component';
 import { HttpModule, Http } from '@angular/http';
+import { HeroFormComponent } from './hero-form/hero-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroListComponent,
     HeroDetailsComponent,
-    HeroComponent
+    HeroComponent,
+    HeroFormComponent
   ],
   imports: [
     BrowserModule,

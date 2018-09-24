@@ -41,4 +41,14 @@ export class HeroDetailsComponent implements OnInit {
     this.paramsSub.unsubscribe();
   }
 
+  updateHero (hero: HeroModel) {
+    return this.heroService
+      .updateHero(this.heroId, hero)
+      .then(()=>{
+      })
+      .catch((error)=>{
+        console.log(error);
+      });
+  }
+
 }

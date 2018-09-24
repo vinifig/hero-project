@@ -1,0 +1,32 @@
+.hero-form {
+    padding: 2px 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    min-width: 300px;
+    max-width: 600px;
+    border-radius: 10px;
+    border: 3px solid #ff7f50;
+    text-align: left;
+}
+
+.hero-form-header {
+    padding: 5px 0;
+    border-bottom: 1px solid white;
+}
+
+.hero-form-header > .hero-form-details {
+    color: blue;
+}
+
+.hero-form-info > p {
+    line-height: 1.1rem;
+}
+
+.hero-form-name, .hero-form-role {
+    margin: 2px 0;
+}
+
+.hero-form-role {
+    font-size: 1.0rem;
+    color: rgb(172, 162, 156);
+    font-style: italic;
+}
