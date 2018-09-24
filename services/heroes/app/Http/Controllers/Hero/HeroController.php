@@ -22,7 +22,10 @@ class HeroController extends Controller
         if ($cached !== null) {
             return $this->ok($cached);
         }
-        $hero = Hero::findOrFail($id);
+        $hero = Hero::find($id);
+        if ($hero == null) {
+            return $this->resourceNotFound();
+        }
         Hero::saveCache($id, $hero);
         return $this->ok($hero);
     }
@@ -49,8 +52,11 @@ class HeroController extends Controller
     }
 
     public function delete (Request $request, $id) {
-        Hero::findOrFail($id)
-            ->delete();
+        $hero = Hero::findOrFail($id);
+        if ($hero == null) {
+            return resourceNotFound();
+        }
+        $hero->delete();
         Hero::deleteCached($id);
         return $this->noContent();
     }

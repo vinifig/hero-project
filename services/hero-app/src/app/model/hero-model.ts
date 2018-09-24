@@ -1,8 +1,9 @@
 export class HeroModel {
     public _id: string;
 
-    public type: string;
+    public role: string;
     public name: string;
+    public type: string;
     public life: number;
     public defense: number;
     public attack: number;

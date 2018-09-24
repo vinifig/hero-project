@@ -15,7 +15,7 @@ class CacheableModel extends Model
 
     public static function deleteCached ($id) {
         $resourceName = self::_resourceName($id);
-        Redis::delete($resourceName);
+        Redis::set($resourceName, '');
     }
 
     public static function saveCache ($id, $data) {
@@ -26,7 +26,9 @@ class CacheableModel extends Model
     public static function getCached($id) {
         $resourceName = self::_resourceName($id);
         $cached = Redis::get($resourceName);
-
+        if ($cached == '') {
+            return null;
+        }
         return json_decode($cached);
     }
 }

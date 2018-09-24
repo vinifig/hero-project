@@ -9,5 +9,15 @@ class Hero extends Model
 {
     //
     protected $collection = 'heroes';
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name',
+        'type',
+        'role',
+        'life',
+        'defense',
+        'attack',
+        'attackSpeed',
+        'moveSpeed'
+    ];
 }
+
