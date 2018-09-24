@@ -13,8 +13,9 @@
     border-bottom: 1px solid white;
 }
 
-.hero-header > .hero-details {
+.hero-details, .hero-delete {
     color: blue;
+    cursor: pointer;
 }
 
 .hero-info > p {

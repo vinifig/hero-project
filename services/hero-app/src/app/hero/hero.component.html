@@ -3,6 +3,7 @@
     <h1 class="hero-name">{{hero.name}}</h1>
     <h2 class="hero-role">{{hero.role}}</h2>
     <a *ngIf="showDetails" class="hero-details" [routerLink]="['/hero', hero._id]">Details</a>
+    <a *ngIf="showDelete" class="hero-delete" (click)="deleteHero(hero._id)">Delete</a>
   </div>
   <div class="hero-info">
     <p class="hero-info-type">Type: {{hero.type}}</p>

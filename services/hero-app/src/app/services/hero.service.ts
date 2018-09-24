@@ -45,8 +45,12 @@ export class HeroService {
   }
 
   public deleteHero (hero: HeroModel) {
+    return this.deleteHeroById(hero._id)
+  }
+
+  public deleteHeroById (_id: string) {
     return this.http
-      .delete(`${environment.heroesURI}`)
+      .delete(`${environment.heroesURI}/${_id}`)
       .toPromise()
       .then((response) => response.json())
       .catch((content)=>console.log(content));
