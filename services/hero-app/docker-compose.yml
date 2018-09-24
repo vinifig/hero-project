@@ -1,6 +1,6 @@
 version: '2'
 services:
-  # Laravel Application
+  # Angular Application
   hero_app:
     build:
       context: ./

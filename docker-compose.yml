@@ -1,5 +1,6 @@
 version: '2'
 services:
+  #HEROES MICROSERVICES
   # Laravel Application
   heroes_app:
     build:
@@ -44,7 +45,57 @@ services:
     volumes:
       - heroes_cachedata:/data
     command: redis-server --appendonly yes
+
+  #USERS MICROSERVICE
+  # Laravel Application
+  users_app:
+    build:
+      context: ./services/users
+      dockerfile: users-app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./services/users:/var/www
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=users_database"
+  
+  # Nginx Server - Laravel Server
+  users_web:
+    build:
+      context: ./services/users
+      dockerfile: users-web.dockerfile
+    working_dir: /var/www
+    volumes_from:
+      - users_app
+    ports:
+      - 8080:80
+  
+  # MySQL Database
+  users_database:
+    image: mysql:latest
+    volumes:
+      - users_dbdata:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=users"
+      - "MYSQL_USER=devuser"
+      - "MYSQL_PASSWORD=devpass"
+      - "MYSQL_ROOT_PASSWORD=devpass"
+    ports:
+      - "33061:3306"
+
+  # Hero App
+  hero_app:
+    build:
+      context: ./services/hero-app
+      dockerfile: hero-app.dockerfile
+    working_dir: /usr/src/app
+    ports:
+      - 8082:80
     
 volumes:
+  #heroes volumes
   heroes_dbdata:
   heroes_cachedata:
+
+  #users volumes
+  users_dbdata:
