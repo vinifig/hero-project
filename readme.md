@@ -67,3 +67,33 @@ Then create all `microservice configuration files` based on [users microservice]
 > If you are running on windows, change `$(pwd)` to `"%cd%"`: `docker run --rm -v "%cd%":/app composer install`
 
 > If you want any other version of laravel see the official releases page: [https://github.com/laravel/laravel/releases](https://github.com/laravel/laravel/releases)
+
+
+## Running the project
+
+> Before run, verify if your docker environment has authorization to read and write in the disk
+
+With docker-compose installed run the commands above in the root folder:
+
+```sh
+docker-compose up
+docker-compose exec heroes_app composer install
+docker-compose exec heroes_app php artisan db:seed --class=HeroesSeeder
+
+docker-compose exec users_app composer install
+docker-compose exec users_app php artisan migrate
+```
+
+To see the hero-app open your browser on 0.0.0.0:8082 (localhost:8082).
+
+
+## ToDo
+
+* Verify, update and build all the projects docs
+* Finalize api_management
+* Create a swagger api docs
+* Add authentication and guards in angular hero-app
+* Create the CDN with RabbitMQ for images upload communication
+* Integrate Heroes and CDN Microsservices with RabbitMQ
+* Include on hero-component a image for the hero
+
